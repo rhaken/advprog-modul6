@@ -48,4 +48,11 @@ Fungsi `handle_connection` adalah bagian penting dari server HTTP, di mana ia me
 
 - **Penanganan Permintaan yang Tidak Dikenali** ini memungkinkan server untuk menangani permintaan yang tidak dikenali. Daripada memberikan respons default, server sekarang memberikan respons yang lebih informatif `(HTTP 404)` kepada klien, memberi tahu mereka bahwa permintaan tidak dapat dipenuhi. Selain itu informasi dapat dikostumisasi pada file `404.html`.
 
+# Commit 4
+Penanganan Permintaan `GET /sleep HTTP/1.1`, server akan menunda respons selama 5 detik menggunakan `thread::sleep(Duration::from_secs(5))`. Setelah itu, server akan mengirimkan `respons HTTP 200 (OK)` bersama dengan konten dari file `hello.html`. 
+
+Pengaplikasian *slow response* ini bertujuan untuk menguji bagiamana aplikasi menangani pengiriman *asynchronous*. Pengiriman *asynchronous* akan menyebabkan respon memakan waktu lebih lama dari yang diharapkan. Lebih lanjutnya akan sangat membantu ketika server diakses oleh banyak klien sekaligus.
+
+Setelah dianalisis, pemanggilan `127.0.0.1:7878/sleep` benar menunda respons selama 5 detik. Penyebabnya adalah aplikasi server yang masih *single-threaded*.
+
 
