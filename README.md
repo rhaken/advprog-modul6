@@ -37,3 +37,15 @@ Fungsi `handle_connection` adalah bagian penting dari server HTTP, di mana ia me
 - Selanjutnya, file HTML statis yang akan dikirim sebagai respons `(hello.html)`. Respons dibaca menggunakan `fs::read_to_string` dan dimasukkan ke dalam variabel contents.
 
 - Panjang konten dari file HTML dihitung menggunakan `contents.len() `untuk menentukan ukuran respons. Respons disusun menggunakan `format!` untuk mencakup status line, panjang konten, dan isi konten.
+
+# Commit 3
+![image](https://github.com/rhaken/advprog-modul6/assets/39646450/044b0441-a643-4080-9130-ec50208003a9)
+### Pemisahan Berdasarkan Permintaan
+- Respons HTTP dibagi berdasarkan permintaan yang diterima dari klien. Jika permintaan adalah `GET / HTTP/1.1`, server akan mengirimkan respons `HTTP 200 (OK)` bersama dengan konten dari file `hello.html`. Namun, jika permintaan tidak dikenali, server akan mengirimkan respons `HTTP 404 (Not Found)` bersama dengan konten dari file `404.html`.
+
+### Alasan Refakatorisasi
+- **Ketepatan dan Kesesuaian Respons membagi respons** Berdasarkan permintaan, server memberikan respons yang lebih sesuai dengan situasi. Misalnya, jika klien meminta halaman yang tidak ada, respons `HTTP 404` memberi tahu klien bahwa halaman tidak ditemukan. Sementara respons `HTTP 200` menunjukkan bahwa halaman yang diminta berhasil ditemukan.
+
+- **Penanganan Permintaan yang Tidak Dikenali** ini memungkinkan server untuk menangani permintaan yang tidak dikenali. Daripada memberikan respons default, server sekarang memberikan respons yang lebih informatif `(HTTP 404)` kepada klien, memberi tahu mereka bahwa permintaan tidak dapat dipenuhi. Selain itu informasi dapat dikostumisasi pada file `404.html`.
+
+
