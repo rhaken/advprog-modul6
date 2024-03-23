@@ -55,7 +55,7 @@ Pengaplikasian *slow response* ini bertujuan untuk menguji bagiamana aplikasi me
 
 Setelah dianalisis, pemanggilan `127.0.0.1:7878/sleep` benar menunda respons selama 5 detik. Penyebabnya adalah aplikasi server yang masih *single-threaded*.
 
-# Commit 4
+# Commit 5
 Untuk mengimplementasikan multi-threading di web-server, perlu membuat struktur `ThreadPool` yang bertugas mengelola sejumlah thread yang berjalan serentak. Kemudian membuat struktur `Worker` yang bertugas menerima dan menjalankan kode yang dikirimkan ke `ThreadPool`. Terdapat juga tipe `Job` yang berisi informasi tugas yang akan dijalankan oleh Worker.
 
 Untuk memfasilitasi komunikasi antara `ThreadPool` dengan `Worker`, disediakan channel dengan `mpsc::channel()`. Ketika `ThreadPool` menerima permintaan untuk menjalankan sebuah `Job`, sinyal akan dikirimkan oleh sender ke receiver Worker melalui `channel`.
