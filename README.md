@@ -1,6 +1,6 @@
 # Tutorial 6
 
-## Commit 1
+# Commit 1
 # Fungsi
 ```rust
 fn handle_connection(mut stream: TcpStream) { 
@@ -29,3 +29,11 @@ fn handle_connection(mut stream: TcpStream) {
 
 # Kesimpulan
 Fungsi `handle_connection` adalah bagian penting dari server HTTP, di mana ia membaca stream data dari koneksi TCP, mengumpulkan permintaan HTTP dalam bentuk baris-baris teks, dan kemudian mencetaknya. Ini menunjukkan penggunaan borrowing di Rust untuk membaca data tanpa mengambil kepemilikan penuh, sehingga memfasilitasi penggunaan sumber daya yang efisien.
+
+# Commit 2
+![image](https://github.com/rhaken/advprog-modul6/assets/39646450/44646ea0-3f29-4a90-b6a4-8ecb09306160)
+- Pada bagian modifikasi, ditambahkan variabel status_line yang menyatakan status line HTTP, yaitu "HTTP/1.1 200 OK". Ini memberikan informasi kepada klien bahwa permintaan berhasil (kode status 200).
+
+- Selanjutnya, file HTML statis yang akan dikirim sebagai respons `(hello.html)`. Respons dibaca menggunakan `fs::read_to_string` dan dimasukkan ke dalam variabel contents.
+
+- Panjang konten dari file HTML dihitung menggunakan `contents.len() `untuk menentukan ukuran respons. Respons disusun menggunakan `format!` untuk mencakup status line, panjang konten, dan isi konten.
